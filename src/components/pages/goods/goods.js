@@ -4,11 +4,21 @@ import Header from '../../header/header';
 import TextContainer from '../../text-container/text-container';
 import GoodsItemList from '../../goods-item-list/goods-item-list';
 import HeaderContent from '../../header-content/header-content';
+import FilterPanel from '../../filter-panel/filter-panel';
 
 import bgImg from './goods-bg.jpg';
 import img from './drinking-woman.png'
 
 export default class GoodsPage extends Component {
+	state = {
+		term: '',
+		country: '',
+	}
+
+	onEditFilters = (key, value) => {
+		this.setState({[key]: value});
+	}
+
 	render() {
 		const {onMenuClick} = this.props;
 		return (
@@ -31,8 +41,8 @@ export default class GoodsPage extends Component {
 							is song that held help face.
 						</p>
 					</TextContainer>
-					<GoodsItemList onMenuClick={onMenuClick}>
-						<h2>------------------------------</h2>
+					<GoodsItemList onMenuClick={onMenuClick} {...this.state}>
+						<FilterPanel onEditFilters={this.onEditFilters}/>
 					</GoodsItemList>
 				</main>
 			</>

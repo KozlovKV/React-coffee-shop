@@ -31,7 +31,7 @@ export default class GoodsItemList extends Component {
 		const {best, country, term, onMenuClick} = this.props;
 		if (best) { goods = goods.filter(item => item.best) }
 		if (country) { goods = goods.filter(item => item.country === country) }
-		if (country) { goods = goods.filter(item => item.header.indexOf(term)) }
+		if (term) { goods = goods.filter(item => item.header.toLowerCase().indexOf(term.toLowerCase()) > -1) }
 		return goods.map(
 			goods => <GoodsItem
 						key={goods.header} 
