@@ -39,7 +39,7 @@ export default class AboutUsPage extends Component {
 						</p>
 					</TextContainer>
 					<div className="wood-bg">
-						<GoodsItemList>
+						<GoodsItemList best>
 							<h2>Our best</h2>
 						</GoodsItemList>
 					</div>
