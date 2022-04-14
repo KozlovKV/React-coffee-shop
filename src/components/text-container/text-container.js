@@ -19,9 +19,9 @@ export default class TextContainer extends Component {
 		);
 	}
     return (
-      <section className='container' style={{textAlign: align}}>
+      <section className='container'>
 		{imgBlock}
-		<div style={halfsStyle}>
+		<div style={{textAlign: align, ...halfsStyle}}>
 			<h2>{header}</h2>
 			<BeansDivider/>
 			{children}

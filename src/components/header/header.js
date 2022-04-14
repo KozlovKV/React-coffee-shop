@@ -8,7 +8,7 @@ export default class Header extends Component {
   render() {
 	const {bgImg, onMenuClick, children} = this.props;
     return (
-		<header style={{backgroundImage: `url(${bgImg})`}}>
+		<header style={{background: `url(${bgImg}) center / cover`}}>
 			<div className="container">
 				<Menu white align="left" onMenuClick={onMenuClick}/>
 				{children}

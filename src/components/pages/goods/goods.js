@@ -31,7 +31,7 @@ export default class GoodsPage extends Component {
 							is song that held help face.
 						</p>
 					</TextContainer>
-					<GoodsItemList>
+					<GoodsItemList onMenuClick={onMenuClick}>
 						<h2>------------------------------</h2>
 					</GoodsItemList>
 				</main>

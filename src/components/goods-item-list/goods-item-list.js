@@ -28,16 +28,18 @@ export default class GoodsItemList extends Component {
 
 	getGoodsItems() {
 		let goods = GoodsItemList.getGoodsFromLocalStorage()
-		const {best, country} = this.props;
+		const {best, country, term, onMenuClick} = this.props;
 		if (best) { goods = goods.filter(item => item.best) }
 		if (country) { goods = goods.filter(item => item.country === country) }
+		if (country) { goods = goods.filter(item => item.header.indexOf(term)) }
 		return goods.map(
 			goods => <GoodsItem
 						key={goods.header} 
 						img={goods.img} 
 						header={goods.header} 
 						country={goods.country} 
-						price={goods.price}/>
+						price={goods.price}
+						onMenuClick={onMenuClick}/>
 		);
 	}
 

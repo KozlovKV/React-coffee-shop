@@ -5,6 +5,7 @@ import BeansDivider from '../beans-divider/beans-divider';
 import AboutUsPage from '../pages/about-us/about-us';
 import GoodsPage from '../pages/goods/goods';
 import PleasurePage from '../pages/pleasure/pleasure';
+import SingleItemPage from '../pages/single-item/single-item';
 
 import './app.scss';
 
@@ -13,6 +14,7 @@ export default class App extends Component {
     'about-us': AboutUsPage,
     'goods': GoodsPage,
     'pleasure': PleasurePage,
+    'single-item': SingleItemPage,
   }
 
   constructor(props) {
@@ -33,9 +35,9 @@ export default class App extends Component {
     const PageContent = App.pageComponents[this.state.page];
     return (
       <>
-        <PageContent onMenuClick={this.setPage}/>
+        <PageContent onMenuClick={this.setPage} />
         <footer className='container'>
-          <Menu />
+          <Menu onMenuClick={this.setPage} />
           <BeansDivider />
         </footer>
       </>
