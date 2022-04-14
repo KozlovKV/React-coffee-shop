@@ -7,9 +7,9 @@ import './menu.scss';
 export default class Menu extends Component {
   render() {
     return (
-      <nav>
+      <nav style={{textAlign: this.props.align}}>
 		<span>
-			<img src={this.props.white ? logoWhite : logoBlack} alt="" />
+			<img src={this.props.white ? logoWhite : logoBlack} alt="Logo"/>
 		</span>
 		<span>
 			Our coffee
