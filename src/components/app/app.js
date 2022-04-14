@@ -4,8 +4,10 @@ import Header from '..//header/header';
 import Menu from '../menu/menu';
 import BeansDivider from '../beans-divider/beans-divider';
 import TextContainer from '../text-container/text-container';
+import GoodsItemList from '../goods-item-list/goods-item-list';
 
 import './app.scss';
+
 export default class App extends Component {
   render() {
     return (
@@ -28,6 +30,9 @@ export default class App extends Component {
               repair day ladies now.
             </p>
           </TextContainer>
+          <GoodsItemList>
+            <h2>Our best</h2>
+          </GoodsItemList>
         </main>
         <footer className='container'>
           <Menu />
