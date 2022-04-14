@@ -5,19 +5,24 @@ import logoWhite from './svg/logo-white.svg';
 import './menu.scss';
 
 export default class Menu extends Component {
-  render() {
-    return (
-      <nav style={{textAlign: this.props.align}}>
-		<span>
-			<img src={this.props.white ? logoWhite : logoBlack} alt="Logo"/>
-		</span>
-		<span>
-			Our coffee
-		</span>
-		<span>
-			Our pleasure
-		</span>
-      </nav>
-    );
-  }
+	setPage = (e) => {
+		const { onMenuClick } = this.props;
+		onMenuClick(e.currentTarget.dataset.page);
+	}
+
+	render() {
+		return (
+			<nav style={{ textAlign: this.props.align }}>
+				<span data-page="about-us" onClick={this.setPage}>
+					<img src={this.props.white ? logoWhite : logoBlack} alt="Logo" />
+				</span>
+				<span data-page="goods" onClick={this.setPage}>
+					Our coffee
+				</span>
+				<span data-page="pleasure" onClick={this.setPage}>
+					For your pleasure
+				</span>
+			</nav>
+		);
+	}
 }

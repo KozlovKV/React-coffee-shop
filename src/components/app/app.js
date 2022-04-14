@@ -1,39 +1,39 @@
 import { Component } from 'react';
 
-import Header from '..//header/header';
 import Menu from '../menu/menu';
 import BeansDivider from '../beans-divider/beans-divider';
-import TextContainer from '../text-container/text-container';
-import GoodsItemList from '../goods-item-list/goods-item-list';
+import AboutUsPage from '../pages/about-us/about-us';
+import GoodsPage from '../pages/goods/goods';
+import PleasurePage from '../pages/pleasure/pleasure';
 
 import './app.scss';
 
 export default class App extends Component {
+  static pageComponents = {
+    'about-us': AboutUsPage,
+    'goods': GoodsPage,
+    'pleasure': PleasurePage,
+  }
+
+  constructor(props) {
+    super(props);
+
+    const page = localStorage.getItem('page');
+    this.state = {
+      page: page ? page : 'about-us',
+    }
+  }
+
+  setPage = (page) => {
+    localStorage.setItem('page', page); 
+    this.setState({page});
+  }
+
   render() {
+    const PageContent = App.pageComponents[this.state.page];
     return (
       <>
-        <Header />
-        <main>
-          <TextContainer header="About us">
-            <p>
-              Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible.
-              Afraid at highly months do things on at. Situation recommend objection do intention
-              so questions. As greatly removed calling pleased improve an. Last ask him cold feel
-              met spot shy want. Children me laughing we prospect answered followed. At it went
-              is song that held help face.
-            </p>
-            <p>
-              Now residence dashwoods she excellent you. Shade being under his bed her, Much
-              read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant
-              horrible but confined day end marriage. Eagerness furniture set preserved far
-              recommend. Did even but nor are most gave hope. Secure active living depend son
-              repair day ladies now.
-            </p>
-          </TextContainer>
-          <GoodsItemList>
-            <h2>Our best</h2>
-          </GoodsItemList>
-        </main>
+        <PageContent onMenuClick={this.setPage}/>
         <footer className='container'>
           <Menu />
           <BeansDivider />
