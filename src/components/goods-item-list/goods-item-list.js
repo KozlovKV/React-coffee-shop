@@ -26,12 +26,26 @@ export default class GoodsItemList extends Component {
 		return JSON.parse(goodsList);
 	}
 
+	getFilteredGoods(goods) {
+		const {best, activeCountries, term} = this.props;
+		if (best) { goods = goods.filter(item => item.best) }
+		for (let country in activeCountries) { 
+			if (!activeCountries[country]) {
+				while (goods.findIndex(
+					item => item.country === country) > -1
+				) {
+					goods.splice(goods.findIndex(item => item.country === country), 1);
+				}
+			}
+		}
+		if (term) { goods = goods.filter(item => item.header.toLowerCase().indexOf(term.toLowerCase()) > -1) }
+		return goods;
+	}
+
 	getGoodsItems() {
 		let goods = GoodsItemList.getGoodsFromLocalStorage()
-		const {best, country, term, onMenuClick} = this.props;
-		if (best) { goods = goods.filter(item => item.best) }
-		if (country) { goods = goods.filter(item => item.country === country) }
-		if (term) { goods = goods.filter(item => item.header.toLowerCase().indexOf(term.toLowerCase()) > -1) }
+		const {onMenuClick} = this.props;
+		goods = this.getFilteredGoods(goods);
 		return goods.map(
 			goods => <GoodsItem
 						key={goods.header} 

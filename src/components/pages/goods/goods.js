@@ -12,11 +12,11 @@ import img from './drinking-woman.png'
 export default class GoodsPage extends Component {
 	state = {
 		term: '',
-		country: '',
+		activeCountries: {},
 	}
 
-	onEditFilters = (key, value) => {
-		this.setState({[key]: value});
+	onEditFilters = (obj) => {
+		this.setState(obj);
 	}
 
 	render() {
