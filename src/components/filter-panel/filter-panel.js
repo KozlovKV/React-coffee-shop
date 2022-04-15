@@ -33,15 +33,14 @@ export default class FilterPanel extends Component {
 		let countryBtnElements = [];
 		for (let country in activeCountries) {
 			countryBtnElements.push(
-				<button
+				<input
+					type="button"
 					key={country}
 					value={country}
 					className={activeCountries[country] ? "active" : null}
 					data-filter-key="country"
 					onClick={this.onToggleCountryBtn}
-				>
-					{country}
-				</button>
+				/>
 			)
 		}
 		return countryBtnElements;
@@ -51,15 +50,16 @@ export default class FilterPanel extends Component {
 		return (
 			<div className="container">
 				<div className="row row-cols-1 row-cols-md-2">
-					<div className="col">
-						<label htmlFor="term">Looking for</label>
+					<div className="col filter-block">
+						<span>Looking for</span>
 						<input
-							name="term" id="term"
+							name="term" id="term" className="active"
 							type="text" placeholder="start typing here"
 							value={this.state.term} onInput={this.onEditFilter}
 							data-filter-key="term" />
 					</div>
-					<div className="col">
+					<div className="col filter-block">
+						<span>Or filter</span>
 						{this.getCountryBtnsElements()}
 					</div>
 				</div>

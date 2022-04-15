@@ -6,6 +6,7 @@ import GoodsItemList from '../../goods-item-list/goods-item-list';
 import HeaderContent from '../../header-content/header-content';
 
 import bgImg from './main-bg.jpg';
+import './about-us.scss';
 
 export default class AboutUsPage extends Component {
 	render() {
