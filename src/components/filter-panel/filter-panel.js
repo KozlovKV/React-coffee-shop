@@ -1,35 +1,32 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import './filter-panel.scss';
 
-export default class FilterPanel extends Component {
-	state = {
-		term: '',
-		activeCountries: {
-			Brazil: true,
-			Keniya: true,
-			Columbia: true
-		}
-	}
+export default function FilterPanel(props) {
+	const [term, setTerm] = useState('');
+	const [activeCountries, setActiveCountries] = useState({
+		Brazil: true,
+		Keniya: true,
+		Columbia: true
+	});
 
-	onEditFilter = (e) => {
+	const onEditTerm = (e) => {
 		const { dataset, value } = e.target;
-		this.setState({ [dataset.filterKey]: value });
-		this.props.onEditFilters({ [dataset.filterKey]: value })
+		setTerm(value);
+		props.onEditFilters({ [dataset.filterKey]: value })
 	}
 
-	onToggleCountryBtn = (e) => {
+	const onToggleCountryBtn = (e) => {
 		const { value } = e.target;
-		this.setState(({ activeCountries }) => {
+		setActiveCountries(( activeCountries ) => {
 			let newActiveCountries = { ...activeCountries }
 			newActiveCountries[value] = !newActiveCountries[value];
-			this.props.onEditFilters({ activeCountries: newActiveCountries });
-			return { activeCountries: newActiveCountries }
+			props.onEditFilters({ activeCountries: newActiveCountries });
+			return newActiveCountries;
 		});
 	}
 
-	getCountryBtnsElements() {
-		const { activeCountries } = this.state;
+	const getCountryBtnsElements = () => {
 		let countryBtnElements = [];
 		for (let country in activeCountries) {
 			countryBtnElements.push(
@@ -39,31 +36,29 @@ export default class FilterPanel extends Component {
 					value={country}
 					className={activeCountries[country] ? "active" : null}
 					data-filter-key="country"
-					onClick={this.onToggleCountryBtn}
+					onClick={onToggleCountryBtn}
 				/>
 			)
 		}
 		return countryBtnElements;
 	}
 
-	render() {
-		return (
-			<div className="container">
-				<div className="row row-cols-1 row-cols-md-2">
-					<div className="col filter-block">
-						<span>Looking for</span>
-						<input
-							name="term" id="term" className="active"
-							type="text" placeholder="start typing here"
-							value={this.state.term} onInput={this.onEditFilter}
-							data-filter-key="term" />
-					</div>
-					<div className="col filter-block">
-						<span>Or filter</span>
-						{this.getCountryBtnsElements()}
-					</div>
+	return (
+		<div className="container">
+			<div className="row row-cols-1 row-cols-md-2">
+				<div className="col filter-block">
+					<span>Looking for</span>
+					<input
+						name="term" id="term" className="active"
+						type="text" placeholder="start typing here"
+						value={term} onInput={onEditTerm}
+						data-filter-key="term" />
+				</div>
+				<div className="col filter-block">
+					<span>Or filter</span>
+					{getCountryBtnsElements()}
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }

@@ -1,22 +1,18 @@
-import { Component } from 'react';
-
 import BeansDivider from './../beans-divider/beans-divider';
 
 import './header-content.scss';
 
-export default class HeaderContent extends Component {
-  render() {
-    const {text, children} = this.props;
+export default function HeaderContent(props) {
+    const { text, children } = props;
     return (
-      <>
-        <h1>{text}</h1>
-        {children ?
-        (<>
-          <BeansDivider white/>
-          {children}
-        </>) 
-        : null}
-      </>
+        <>
+            <h1>{text}</h1>
+            {children ?
+                (<>
+                    <BeansDivider white />
+                    {children}
+                </>)
+                : null}
+        </>
     );
-  }
 }

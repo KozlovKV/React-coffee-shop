@@ -1,12 +1,9 @@
-import { Component } from 'react';
-
 import BeansDivider from './../beans-divider/beans-divider';
 
 import './text-container.scss';
 
-export default class TextContainer extends Component {
-  render() {
-    const {header, img, align, children} = this.props;
+export default function TextContainer(props) {
+	const { header, img, align, children } = props;
 	let imgBlock, halfsStyle = {
 		width: '100%', display: 'inline-block'
 	};
@@ -18,15 +15,14 @@ export default class TextContainer extends Component {
 			</div>
 		);
 	}
-    return (
-      <section className='container'>
-		{imgBlock}
-		<div style={{textAlign: align, ...halfsStyle}}>
-			<h2>{header}</h2>
-			<BeansDivider/>
-			{children}
-		</div>
-      </section>
-    );
-  }
+	return (
+		<section className='container'>
+			{imgBlock}
+			<div style={{ textAlign: align, ...halfsStyle }}>
+				<h2>{header}</h2>
+				<BeansDivider />
+				{children}
+			</div>
+		</section>
+	);
 }

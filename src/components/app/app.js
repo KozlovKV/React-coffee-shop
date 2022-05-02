@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import Menu from '../menu/menu';
 import BeansDivider from '../beans-divider/beans-divider';
@@ -9,38 +9,35 @@ import SingleItemPage from '../pages/single-item/single-item';
 
 import './app.scss';
 
-export default class App extends Component {
-  static pageComponents = {
+const pageComponents = {
     'about-us': AboutUsPage,
     'goods': GoodsPage,
     'pleasure': PleasurePage,
     'single-item': SingleItemPage,
-  }
+}
 
-  constructor(props) {
-    super(props);
+function _getCachedPage() {
+    let page = localStorage.getItem('page');
+    return page ? page : 'about-us';
+}
 
-    const page = localStorage.getItem('page');
-    this.state = {
-      page: page ? page : 'about-us',
+export default function App(props) {
+    const [page, setPageState] = useState(_getCachedPage())
+
+
+    const setPage = (page) => {
+        localStorage.setItem('page', page);
+        setPageState(page);
     }
-  }
 
-  setPage = (page) => {
-    localStorage.setItem('page', page); 
-    this.setState({page});
-  }
-
-  render() {
-    const PageContent = App.pageComponents[this.state.page];
+    const PageContent = pageComponents[page];
     return (
-      <>
-        <PageContent onMenuClick={this.setPage} />
-        <footer className='container'>
-          <Menu onMenuClick={this.setPage} />
-          <BeansDivider />
-        </footer>
-      </>
+        <>
+            <PageContent onMenuClick={setPage} />
+            <footer className='container'>
+                <Menu onMenuClick={setPage} />
+                <BeansDivider />
+            </footer>
+        </>
     );
-  }
 }
