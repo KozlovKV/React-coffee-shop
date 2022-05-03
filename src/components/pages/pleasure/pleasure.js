@@ -7,10 +7,9 @@ import bgImg from '../pleasure/pleasure-bg.jpg';
 import img from '../pleasure/coffee-cap.jpg'
 
 export default function PleasurePage(props) {
-    const { onMenuClick } = props;
     return (
         <>
-            <Header bgImg={bgImg} onMenuClick={onMenuClick}>
+            <Header bgImg={bgImg}>
                 <HeaderContent text="For your pleasure" />
             </Header>
             <main>
@@ -28,7 +27,7 @@ export default function PleasurePage(props) {
                         is song that held help face.
                     </p>
                 </TextContainer>
-                <GoodsItemList onMenuClick={onMenuClick}>
+                <GoodsItemList>
                     <h2>------------------------------</h2>
                 </GoodsItemList>
             </main>

@@ -23,10 +23,9 @@ export default function GoodsPage(props) {
 		}
 	}
 
-	const { onMenuClick } = props;
 	return (
 		<>
-			<Header bgImg={bgImg} onMenuClick={onMenuClick}>
+			<Header bgImg={bgImg}>
 				<HeaderContent text="Our Coffee" />
 			</Header>
 			<main>
@@ -44,7 +43,7 @@ export default function GoodsPage(props) {
 						is song that held help face.
 					</p>
 				</TextContainer>
-				<GoodsItemList onMenuClick={onMenuClick} {...{term, activeCountries}}>
+				<GoodsItemList {...{term, activeCountries}}>
 					<FilterPanel onEditFilters={onEditFilters} />
 				</GoodsItemList>
 			</main>

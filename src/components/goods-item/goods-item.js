@@ -1,19 +1,16 @@
+import { Link } from 'react-router-dom';
+
 import './goods-item.scss';
 
 export default function GoodsItem(props) {
-	const onSinglePage = (e) => {
-		const { onMenuClick, header } = props;
-		localStorage.setItem('beansName', header);
-		onMenuClick('single-item');
-	}
 
 	const { img, header, country, price } = props;
 	return (
-		<div className='col goods-item' onClick={onSinglePage}>
+		<Link className='col goods-item' to={`/single-item/${header}`}>
 			<img src={img} alt={`${header}`} />
 			<div className='header'>{header}</div>
 			{country ? <div className='country'>{country}</div> : null}
 			<div className='price'><strong>{price}$</strong></div>
-		</div>
+		</Link>
 	);
 }

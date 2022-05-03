@@ -1,24 +1,22 @@
+import { Link } from 'react-router-dom';
+
 import logoBlack from './svg/logo-black.svg';
 import logoWhite from './svg/logo-white.svg';
 import './menu.scss';
 
 export default function Menu(props) {
-	const setPage = (e) => {
-		const { onMenuClick } = props;
-		onMenuClick(e.currentTarget.dataset.page);
-	}
-
+	const color = props.white ? 'white' : 'black';
 	return (
-		<nav style={{ textAlign: props.align }}>
-			<span data-page="about-us" onClick={setPage}>
+		<nav style={{ textAlign: props.align, color }} >
+			<Link to="/">
 				<img src={props.white ? logoWhite : logoBlack} alt="Logo" />
-			</span>
-			<span data-page="goods" onClick={setPage}>
+			</Link>
+			<Link to="/goods" style={{color}}>
 				Our coffee
-			</span>
-			<span data-page="pleasure" onClick={setPage}>
+			</Link>
+			<Link to="/pleasure" style={{color}}>
 				For your pleasure
-			</span>
+			</Link>
 		</nav>
 	);
 }

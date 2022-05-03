@@ -21,16 +21,11 @@ export default function GoodsItemList(props) {
 
     function getGoodsItems() {
         let goods = _getGoodsFromLocalStorage()
-        const { onMenuClick } = props;
         goods = getFilteredGoods(goods);
         return goods.map(
             goods => <GoodsItem
                 key={goods.header}
-                img={goods.img}
-                header={goods.header}
-                country={goods.country}
-                price={goods.price}
-                onMenuClick={onMenuClick} />
+                {...goods} />
         );
     }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Menu from '../menu/menu';
 import BeansDivider from '../beans-divider/beans-divider';
@@ -9,35 +9,19 @@ import SingleItemPage from '../pages/single-item/single-item';
 
 import './app.scss';
 
-const pageComponents = {
-    'about-us': AboutUsPage,
-    'goods': GoodsPage,
-    'pleasure': PleasurePage,
-    'single-item': SingleItemPage,
-}
-
-function _getCachedPage() {
-    let page = localStorage.getItem('page');
-    return page ? page : 'about-us';
-}
-
 export default function App(props) {
-    const [page, setPageState] = useState(_getCachedPage())
-
-
-    const setPage = (page) => {
-        localStorage.setItem('page', page);
-        setPageState(page);
-    }
-
-    const PageContent = pageComponents[page];
     return (
-        <>
-            <PageContent onMenuClick={setPage} />
+        <Router>
+            <Routes>
+                <Route path='/' element={<AboutUsPage/>}/>
+                <Route path='/goods' element={<GoodsPage/>}/>
+                <Route path='/pleasure' element={<PleasurePage/>}/>
+                <Route path='/single-item/:header' element={<SingleItemPage/>}/>
+            </Routes>
             <footer className='container'>
-                <Menu onMenuClick={setPage} />
+                <Menu />
                 <BeansDivider />
             </footer>
-        </>
+        </Router>
     );
 }
